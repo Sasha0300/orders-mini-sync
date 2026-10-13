@@ -1,4 +1,16 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.py" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": { "type": "service", "service": "orders-mini-sync" }
+    }
+  ],
+  "services": {
+    "orders-mini-sync": {
+      "root": ".",
+      "buildCommand": "pip install -r requirements.txt",
+      "entrypoint": "api/index.py"
+    }
+  }
 }
